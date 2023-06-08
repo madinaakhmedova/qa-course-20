@@ -23,7 +23,7 @@ public class TextboxTests {
     void successTest() {
         open("/text-box");
 
-        $("#Name").setValue("Alex Egorov");
+        $("#userName").setValue("Alex Egorov");
         $("#userEmail").setValue("alex@egorov.com");
         $("#currentAddress").setValue("Some address 1");
         $("#permanentAddress").setValue("Another some address 1");

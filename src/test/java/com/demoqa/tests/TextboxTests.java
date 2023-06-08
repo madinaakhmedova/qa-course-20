@@ -13,17 +13,17 @@ public class TextboxTests {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.browser = CHROME;
-        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
+        Configuration.browserSize = "1920x1080";
+//        Configuration.browser = CHROME;
+//        Configuration.holdBrowserOpen = true;
     }
 
     @Test
     void successTest() {
         open("/text-box");
 
-        $("#userName").setValue("Alex Egorov");
+        $("#Name").setValue("Alex Egorov");
         $("#userEmail").setValue("alex@egorov.com");
         $("#currentAddress").setValue("Some address 1");
         $("#permanentAddress").setValue("Another some address 1");

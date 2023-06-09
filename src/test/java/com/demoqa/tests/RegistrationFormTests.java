@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationFormTests {
 
@@ -21,18 +22,39 @@ public class RegistrationFormTests {
 
     @Test
     void successTest() {
-        open("/text-box");
+        open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove();$('#adplus-anchor').remove();$('footer').remove();");
 
-        $("#userName").setValue("Alex Egorov");
+        $("#firstName").setValue("Alex");
+        $("#lastName").setValue("Egorov");
         $("#userEmail").setValue("alex@egorov.com");
-        $("#currentAddress").setValue("Some address 1");
-        $("#permanentAddress").setValue("Another some address 1");
-        $("#submit").click();
+        $("#genterWrapper").$(byAttribute("for", "gender-radio-1")).click();
+        $("#userNumber").setValue("89670495773");
+        $("#subjectsContainer").find("input").setValue("english");
+        $("#react-select-2-option-0").click();
+        $("#subjectsContainer").find("input").setValue("sc");
+        $("#react-select-2-option-0").click();
+        $("#currentAddress").setValue("111");
+        $("#state").find("input").setValue("NCR");
+        $("#react-select-3-option-0").click();
+        $("#city").find("input").setValue("Delhi");
+        $("#react-select-4-option-0").click();
+        $("#subjectsContainer").find("input").pressEnter(); // Отправляем форму нажатием Enter на поле subject
 
-        $("#output #name").shouldHave(text("Alex Egorov"));
-        $("#output #email").shouldHave(text("Email:alex@egorov.com"));
-        $("#output #currentAddress").shouldHave(text("Current Address :Some address 1"));
-        $("#output #permanentAddress").shouldHave(text("Permananet Address :Another some address 1"));
+
+        $(".modal-body").shouldHave(text("Alex"));
+        $(".modal-body").shouldHave(text("Egorov"));
+        $(".modal-body").shouldHave(text("alex@egorov.com"));
+        $(".modal-body").shouldHave(text("Male"));
+        $(".modal-body").shouldHave(text("8967049577"));
+        $(".modal-body").shouldHave(text("12 June,2023"));
+        $(".modal-body").shouldHave(text("Computer Science"));
+        $(".modal-body").shouldHave(text("111"));
+        $(".modal-body").shouldHave(text("NCR"));
+        $(".modal-body").shouldHave(text("Delhi"));
+
+        $("#subjectsContainer").find("input").pressEscape(); // Закрываем модальное окно
+        $(".modal-body").shouldNotBe(visible);
 
     }
 }

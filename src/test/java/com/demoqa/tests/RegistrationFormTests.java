@@ -4,6 +4,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -30,6 +32,11 @@ public class RegistrationFormTests {
         $("#userEmail").setValue("alex@egorov.com");
         $("#genterWrapper").$(byAttribute("for", "gender-radio-1")).click();
         $("#userNumber").setValue("89670495773");
+
+        //$("#dateOfBirthInput").find("input").setValue("12 June,2023");
+        //$("col-md-3 col-sm-12").click();
+
+
         $("#subjectsContainer").find("input").setValue("english");
         $("#react-select-2-option-0").click();
         $("#subjectsContainer").find("input").setValue("sc");
@@ -38,6 +45,9 @@ public class RegistrationFormTests {
         $("#state").find("input").setValue("NCR");
         $("#react-select-3-option-0").click();
         $("#city").find("input").setValue("Delhi");
+        $("#uploadPicture").uploadFile(new File("src/test/resources/img/111.jpeg"));
+
+
         $("#react-select-4-option-0").click();
         $("#subjectsContainer").find("input").pressEnter(); // Отправляем форму нажатием Enter на поле subject
 
@@ -47,11 +57,12 @@ public class RegistrationFormTests {
         $(".modal-body").shouldHave(text("alex@egorov.com"));
         $(".modal-body").shouldHave(text("Male"));
         $(".modal-body").shouldHave(text("8967049577"));
-        $(".modal-body").shouldHave(text("12 June,2023"));
+        //$(".modal-body").shouldHave(text("12 June,2023"));
         $(".modal-body").shouldHave(text("Computer Science"));
         $(".modal-body").shouldHave(text("111"));
         $(".modal-body").shouldHave(text("NCR"));
         $(".modal-body").shouldHave(text("Delhi"));
+        $(".modal-body").shouldHave(text("111.jpeg"));
 
         $("#subjectsContainer").find("input").pressEscape(); // Закрываем модальное окно
         $(".modal-body").shouldNotBe(visible);

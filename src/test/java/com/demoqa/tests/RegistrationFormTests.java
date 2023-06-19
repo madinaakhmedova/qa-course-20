@@ -19,7 +19,7 @@ public class RegistrationFormTests {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
 //        Configuration.browser = CHROME;
-        Configuration.holdBrowserOpen = true;
+//        Configuration.holdBrowserOpen = true;
     }
 
     @Test
@@ -50,6 +50,15 @@ public class RegistrationFormTests {
         $("#uploadPicture").uploadFile(new File("src/test/resources/img/111.jpeg"));
 
 
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption("July");
+        $(".react-datepicker__year-select").selectOption("2000");
+//
+//        // <div class="react-datepicker__day--030 react-datepicker__day--outside-month">30</div>
+//        // <div class="react-datepicker__day--030                                      >30</div>
+        $(".react-datepicker__day--029:not(.react-datepicker__day--outside-month)").click();
+
+
         $("#subjectsContainer").find("input").pressEnter(); // Отправляем форму нажатием Enter на поле subject
 
 
@@ -64,6 +73,8 @@ public class RegistrationFormTests {
         $(".modal-body").shouldHave(text("NCR"));
         $(".modal-body").shouldHave(text("Delhi"));
         $(".modal-body").shouldHave(text("111.jpeg"));
+        $(".modal-body").shouldHave(text("29 July,2000"));
+
 
         $("#subjectsContainer").find("input").pressEscape(); // Закрываем модальное окно
         $(".modal-body").shouldNotBe(visible);

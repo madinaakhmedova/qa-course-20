@@ -19,7 +19,7 @@ public class RegistrationFormTests {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
 //        Configuration.browser = CHROME;
-//        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = true;
     }
 
     @Test
@@ -33,8 +33,6 @@ public class RegistrationFormTests {
         $("#genterWrapper").$(byAttribute("for", "gender-radio-1")).click();
         $("#userNumber").setValue("89670495773");
 
-        //$("#dateOfBirthInput").find("input").setValue("12 June,2023");
-        //$("col-md-3 col-sm-12").click();
 
 
         $("#subjectsContainer").find("input").setValue("english");
@@ -42,13 +40,16 @@ public class RegistrationFormTests {
         $("#subjectsContainer").find("input").setValue("sc");
         $("#react-select-2-option-0").click();
         $("#currentAddress").setValue("111");
+
         $("#state").find("input").setValue("NCR");
         $("#react-select-3-option-0").click();
+
         $("#city").find("input").setValue("Delhi");
+        $("#react-select-4-option-0").click();
+
         $("#uploadPicture").uploadFile(new File("src/test/resources/img/111.jpeg"));
 
 
-        $("#react-select-4-option-0").click();
         $("#subjectsContainer").find("input").pressEnter(); // Отправляем форму нажатием Enter на поле subject
 
 

@@ -62,7 +62,6 @@ public class RegistrationFormTests {
         $(".modal-body").shouldHave(text("Delhi"));
         $(".modal-body").shouldHave(text("111.jpeg"));
         $(".modal-body").shouldHave(text("29 July,2000"));
-        $(".modal-body").shouldHave(text("29 July,2000"));
         $(".modal-body").shouldHave(text("Sports"));
 
 

@@ -35,4 +35,16 @@ public class SelenideRepositorySearch {
         $("#repository-container-header").shouldHave(Condition.text("selenide / selenide"));
         sleep(5000);
     }
+
+    @Test
+    void shouldFindTheAssertionSortOnTheWikiPage() {
+//        Откройте страницу Selenide в Github
+        open("/selenide/selenide");
+
+//        Перейдите в раздел Wiki проекта
+//        Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
+//        Откройте страницу SoftAssertions, проверьте что внутри есть пример кода для JUnit5
+        sleep(3000);
+    }
+
 }

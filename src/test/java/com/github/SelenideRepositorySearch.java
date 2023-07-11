@@ -1,5 +1,6 @@
 package com.github;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,15 +23,16 @@ public class SelenideRepositorySearch {
 
         //открыть первую страницу
         open("/");
-        $(byAttribute("data-target", "qbsearch-input.inputButton")).click();
-        $("#query-builder-test").setValue("Madina super");
-
-
-
 
         //ввести в поле поиска selenide и нажать enter
-        //кликнуть на первый репозиторий из списка найденных
-        //проверка: заголовка selenide/selenide
+        $(byAttribute("data-target", "qbsearch-input.inputButton")).click();
+        $("#query-builder-test").setValue("selenide").pressEnter();
 
+        //кликнуть на первый репозиторий из списка найденных
+        $(byAttribute("data-testid", "results-list")).$$("a").first().click();
+
+        //проверка: заголовка selenide/selenide
+        $("#repository-container-header").shouldHave(Condition.text("selenide / selenide"));
+        sleep(5000);
     }
 }

@@ -54,6 +54,22 @@ public class SelenideRepositorySearch {
         $("a[href='/selenide/selenide/wiki/SoftAssertions']").click();
 
 //        проверьте что внутри есть пример кода для JUnit5
+        // что на странице есть текстом `3. Using JUnit5 extend test class`
+        $("#wiki-content").shouldHave(text("Using JUnit5 extend test class"));
+        // что ниже этого заголовка есть элемент с тэгом <pre>
+        $("#wiki-content").shouldHave(text("""
+                @ExtendWith({SoftAssertsExtension.class})
+                class Tests {
+                  @Test
+                  void test() {
+                    Configuration.assertionMode = SOFT;
+                    open("page.html");
+                                
+                    $("#first").should(visible).click();
+                    $("#second").should(visible).click();
+                  }
+                }
+                """));
 
         sleep(3000);
     }

@@ -40,21 +40,21 @@ public class SelenideRepositorySearch {
 
     @Test
     void shouldFindSoftAssertionOnTheWikiPage() {
-//        Откройте страницу Selenide в Github
+//        открыть страницу Selenide в Github
         open("/selenide/selenide");
 
-//        Перейдите в раздел Wiki проекта
+//        перейти в раздел Wiki проекта
         $("#wiki-tab").click();
 
-//       Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
+//       убкдиться, что в списке страниц (Pages) есть страница SoftAssertions
         $("#wiki-pages-filter").setValue("SoftAssertions");
         $(byAttribute("data-filterable-for", "wiki-pages-filter")).shouldHave(text("SoftAssertions"));
 
-//        Откройте страницу SoftAssertions,
+//        отурыть страницу SoftAssertions,
         $("a[href='/selenide/selenide/wiki/SoftAssertions']").click();
 
-//        проверьте что внутри есть пример кода для JUnit5
-        // что на странице есть текстом `3. Using JUnit5 extend test class`
+//        проверить, что внутри есть пример кода для JUnit5
+        // что на странице есть текст `3. Using JUnit5 extend test class`
         $("#wiki-content").shouldHave(text("Using JUnit5 extend test class"));
         // что ниже этого заголовка есть элемент с тэгом <pre>
         $("#wiki-content").shouldHave(text("""

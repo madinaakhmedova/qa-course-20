@@ -5,7 +5,9 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SelenideRepositorySearch {
@@ -37,14 +39,22 @@ public class SelenideRepositorySearch {
     }
 
     @Test
-    void shouldFindTheAssertionSortOnTheWikiPage() {
+    void shouldFindSoftAssertionOnTheWikiPage() {
 //        Откройте страницу Selenide в Github
         open("/selenide/selenide");
 
 //        Перейдите в раздел Wiki проекта
-//        Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
-//        Откройте страницу SoftAssertions, проверьте что внутри есть пример кода для JUnit5
+        $("#wiki-tab").click();
+
+//       Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
+        $("#wiki-pages-filter").setValue("SoftAssertions");
+        $(byAttribute("data-filterable-for", "wiki-pages-filter")).shouldHave(text("SoftAssertions"));
+
+//        Откройте страницу SoftAssertions,
+        $("a[href='/selenide/selenide/wiki/SoftAssertions']").click();
+
+//        проверьте что внутри есть пример кода для JUnit5
+
         sleep(3000);
     }
-
 }

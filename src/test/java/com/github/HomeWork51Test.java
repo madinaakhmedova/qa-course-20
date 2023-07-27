@@ -8,9 +8,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-import java.nio.channels.ConnectionPendingException;
-
-public class hw5_1 {
+public class HomeWork51Test {
 
     @BeforeAll
     static void beforeAll() {
@@ -24,6 +22,7 @@ public class hw5_1 {
     void clickHoverMenuSolution() {
         // открыть страницу /
         open("/");
+
         //навести в меню на пункт Solutions
         $(byText("Solutions")).hover();
 
@@ -32,14 +31,5 @@ public class hw5_1 {
 
         //убедиться, что есть заголовок"Build like the best."
         $(".enterprise-hero").shouldHave(text("Build like the best"));
-
-
-
-
-
-
-        sleep(2000  );
     }
-
-
 }

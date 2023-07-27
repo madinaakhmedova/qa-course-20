@@ -36,7 +36,7 @@ public class hw5_1 {
 
 
 
-        //убедиться, что есть заголовок"Build like the best."
+
 
         sleep(2000  );
     }
